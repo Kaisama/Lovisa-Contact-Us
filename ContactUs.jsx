@@ -1,11 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useState } from 'react';
 import "./Contact.css";
 import { BsPinterest } from "react-icons/bs";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { BsFacebook } from "react-icons/bs";
+import { Link } from 'react-router-dom';
+import Modal from './Modal';
+
 
 const ContactUs = () => {
+  const [callUs,setCallUs]=useState(false);
+ 
+
   return (
     <div>
     <div className='main-content'>
@@ -23,31 +29,41 @@ const ContactUs = () => {
       <div className='page-width'>
     <div className='titles-grid'>
         <div className='titles-grid--item'>
+          <Link to='/help-center'>
             <a href='/shop center link' className=' titles-grid-item-content'>
                 <div className='icon-wrapper'>
                 <img src='//www.lovisa.sg/cdn/shop/files/FAQs_120x.webp?v=1651037079'/>
                 <p className='titles-grid-item-title'>Help Centre</p>
-                </div>
                 
+                </div>
             </a>
+            </Link>
         </div>
+        
         <div className='titles-grid--item'>
+        <Link to='/request'>
             <a className=' titles-grid-item-content' href='/shop link'>
+        
                 <div className='icon-wrapper'>
                     <img src='//www.lovisa.sg/cdn/shop/files/IMG_1994_120x.png?v=1706761726'/>
                     <p className='titles-grid-item-title'>Contact Us</p> 
                 </div>
+               
                 
             </a>
+          </Link>
         </div>
+       
         <div className='titles-grid--item'>
-            <button className=' titles-grid-item-content' type='button' >
+            <button className=' titles-grid-item-content' type='button' onClick={()=>{
+              setCallUs(true)
+            }}>
                 <div className='icon-wrapper'>
                     <img src='//www.lovisa.sg/cdn/shop/files/IMG_1990_120x.png?v=1706761737'/>
                     <p className='titles-grid-item-title para' >Call Us</p> 
 
                 </div>
-            </button>
+            </button>{callUs && <Modal closeModel={setCallUs}/>}
         </div>
     </div>
 </div>
